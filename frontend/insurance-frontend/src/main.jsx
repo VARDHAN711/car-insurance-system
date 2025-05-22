@@ -8,17 +8,20 @@ import CarsPage from './pages/CarsPage.jsx';
 import AccidentsPage from './pages/AccidentsPage.jsx';
 import OwnsPage from './pages/OwnsPage.jsx';
 import ParticipatedPage from './pages/ParticipatedPage.jsx';
+import UpdateDamagePage from './pages/UpdateDamagePage.jsx';
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
+        <Route path="/" element={<App />} /> 
         <Route path="/persons" element={<PersonsPage />} />
         <Route path="/cars" element={<CarsPage />} />
         <Route path="/accidents" element={<AccidentsPage />} />
         <Route path="/owns" element={<OwnsPage />} />
         <Route path="/participated" element={<ParticipatedPage />} />
+        <Route path="/update-damage" element={<UpdateDamagePage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

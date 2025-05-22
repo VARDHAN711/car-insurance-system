@@ -4,7 +4,7 @@ import { getAllCars, addCar, deleteCar } from '../api/cars';
 function CarsPage() {
   const [cars, setCars] = useState([]);
   const [formData, setFormData] = useState({
-    regno: '',
+    Regno: '',
     model: '',
     year: '',
   });
@@ -31,7 +31,7 @@ function CarsPage() {
     try {
       await addCar(formData);
       fetchCars();
-      setFormData({ regno: '', model: '', year: '' });
+      setFormData({ Regno: '', model: '', year: '' });
     } catch (err) {
       console.error(err);
     }
@@ -51,9 +51,9 @@ function CarsPage() {
       <h2>Cars</h2>
       <form onSubmit={handleSubmit}>
         <input
-          name="regno"
+          name="Regno"
           placeholder="Reg No"
-          value={formData.regno}
+          value={formData.Regno}
           onChange={handleChange}
           required
         />
@@ -77,9 +77,9 @@ function CarsPage() {
 
       <ul>
         {cars.map((car) => (
-          <li key={car.regno}>
-            {car.regno} - {car.model} ({car.year})
-            <button onClick={() => handleDelete(car.regno)}>Delete</button>
+          <li key={car.Regno}>
+            {car.Regno} - {car.model} ({car.year})
+            <button onClick={() => handleDelete(car.Regno)}>Delete</button>
           </li>
         ))}
       </ul>

@@ -37,12 +37,12 @@ function PersonsPage() {
     }
   };
 
-  const handleDelete = async (driver_id) => {
+  const handleDelete = async (DRIVER_ID) => {
     try {
-      await deletePerson(driver_id);
-      fetchPersons();
+      await deletePerson(DRIVER_ID);
+      await fetchPersons();
     } catch (err) {
-      console.error(err);
+      console.error('Delete error:', err.response?.data || err.message);
     }
   };
 
@@ -76,9 +76,9 @@ function PersonsPage() {
 
       <ul>
         {persons.map((p) => (
-          <li key={p.driver_id}>
-            {p.driver_id} - {p.name} ({p.address})
-            <button onClick={() => handleDelete(p.driver_id)}>Delete</button>
+          <li key={p.DRIVER_ID}>
+            {p.DRIVER_ID} - {p.name} ({p.address})
+            <button onClick={() => handleDelete(p.DRIVER_ID)}>Delete</button>
           </li>
         ))}
       </ul>

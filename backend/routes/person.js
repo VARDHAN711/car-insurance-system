@@ -1,3 +1,4 @@
+// routes/persons.js
 const express = require('express');
 const router = express.Router();
 const db = require('../db');
@@ -24,9 +25,9 @@ router.get('/:id', async (req, res) => {
 
 // POST - Add new person
 router.post('/', async (req, res) => {
-    const { DRIVER_ID, name, address } = req.body;
+    const { driver_id, name, address } = req.body;
     try {
-        await db.query('INSERT INTO PERSON VALUES (?, ?, ?)', [DRIVER_ID, name, address]);
+        await db.query('INSERT INTO PERSON (DRIVER_ID, name, address) VALUES (?, ?, ?)', [driver_id, name, address]);
         res.status(201).json({ message: 'Person added' });
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -47,7 +48,10 @@ router.put('/:id', async (req, res) => {
 // DELETE - Remove person
 router.delete('/:id', async (req, res) => {
     try {
-        await db.query('DELETE FROM PERSON WHERE DRIVER_ID = ?', [req.params.id]);
+        const [result] = await db.query('DELETE FROM PERSON WHERE DRIVER_ID = ?', [req.params.id]);
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Person not found' });
+        }
         res.json({ message: 'Person deleted' });
     } catch (err) {
         res.status(500).json({ error: err.message });

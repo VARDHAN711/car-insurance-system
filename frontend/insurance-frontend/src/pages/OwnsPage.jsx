@@ -9,7 +9,7 @@ function OwnsPage() {
   const [cars, setCars] = useState([]);
   const [formData, setFormData] = useState({
     driver_id: '',
-    regno: '',
+    Regno: '',
   });
 
   const fetchData = async () => {
@@ -40,7 +40,7 @@ function OwnsPage() {
     try {
       await addOwn(formData);
       fetchData();
-      setFormData({ driver_id: '', regno: '' });
+      setFormData({ driver_id: '', Regno: '' });
     } catch (err) {
       console.error(err);
     }
@@ -62,17 +62,17 @@ function OwnsPage() {
         <select name="driver_id" value={formData.driver_id} onChange={handleChange} required>
           <option value="">Select Driver</option>
           {drivers.map((d) => (
-            <option key={d.driver_id} value={d.driver_id}>
-              {d.driver_id} - {d.name}
+            <option key={d.DRIVER_ID} value={d.DRIVER_ID}>
+              {d.DRIVER_ID} - {d.name}
             </option>
           ))}
         </select>
 
-        <select name="regno" value={formData.regno} onChange={handleChange} required>
+        <select name="Regno" value={formData.Regno} onChange={handleChange} required>
           <option value="">Select Car</option>
           {cars.map((c) => (
-            <option key={c.regno} value={c.regno}>
-              {c.regno} - {c.model}
+            <option key={c.Regno} value={c.Regno}>
+              {c.Regno} - {c.model}
             </option>
           ))}
         </select>
@@ -83,8 +83,8 @@ function OwnsPage() {
       <ul>
         {owns.map((o, idx) => (
           <li key={idx}>
-            Driver: {o.driver_id} - Car: {o.regno}
-            <button onClick={() => handleDelete(o.driver_id, o.regno)}>Delete</button>
+            Driver: {o.driver_id} - Car: {o.Regno}
+            <button onClick={() => handleDelete(o.driver_id, o.Regno)}>Delete</button>
           </li>
         ))}
       </ul>

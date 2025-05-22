@@ -44,10 +44,12 @@ router.post('/', async (req, res) => {
 });
 
 // DELETE - Remove ownership
-router.delete('/', async (req, res) => {
-    const { driver_id, Regno } = req.body;
+router.delete('/:driver_id/:regno', async (req, res) => {
     try {
-        await db.query('DELETE FROM OWNS WHERE driver_id = ? AND Regno = ?', [driver_id, Regno]);
+        const [result] = await db.query('DELETE FROM OWNS WHERE driver_id = ? AND Regno = ?', [req.params.driver_id, req.params.regno]);
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Ownership not found' });
+        }
         res.json({ message: 'Ownership removed' });
     } catch (err) {
         res.status(500).json({ error: err.message });

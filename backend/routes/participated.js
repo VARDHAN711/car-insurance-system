@@ -51,13 +51,15 @@ router.put('/', async (req, res) => {
 });
 
 // DELETE - Remove participation
-router.delete('/', async (req, res) => {
-    const { driver_id, Regno, report_number } = req.body;
+router.delete('/:driver_id/:regno/:report_number', async (req, res) => {
     try {
-        await db.query(
+        const [result] = await db.query(
             'DELETE FROM PARTICIPATED WHERE driver_id = ? AND Regno = ? AND report_number = ?',
-            [driver_id, Regno, report_number]
+            [req.params.driver_id, req.params.regno, req.params.report_number]
         );
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Participation not found' });
+        }
         res.json({ message: 'Participation removed' });
     } catch (err) {
         res.status(500).json({ error: err.message });

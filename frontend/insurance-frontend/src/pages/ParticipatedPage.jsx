@@ -15,7 +15,7 @@ function ParticipatedPage() {
   const [accidents, setAccidents] = useState([]);
   const [formData, setFormData] = useState({
     driver_id: '',
-    regno: '',
+    Regno: '',
     report_number: '',
     damage_amount: '',
   });
@@ -50,7 +50,7 @@ function ParticipatedPage() {
     try {
       await addParticipation(formData);
       fetchData();
-      setFormData({ driver_id: '', regno: '', report_number: '', damage_amount: '' });
+      setFormData({ driver_id: '', Regno: '', report_number: '', damage_amount: '' });
     } catch (err) {
       console.error(err);
     }
@@ -72,17 +72,17 @@ function ParticipatedPage() {
         <select name="driver_id" value={formData.driver_id} onChange={handleChange} required>
           <option value="">Select Driver</option>
           {drivers.map((d) => (
-            <option key={d.driver_id} value={d.driver_id}>
-              {d.driver_id} - {d.name}
+            <option key={d.DRIVER_ID} value={d.DRIVER_ID}>
+              {d.DRIVER_ID} - {d.name}
             </option>
           ))}
         </select>
 
-        <select name="regno" value={formData.regno} onChange={handleChange} required>
+        <select name="Regno" value={formData.Regno} onChange={handleChange} required>
           <option value="">Select Car</option>
           {cars.map((c) => (
-            <option key={c.regno} value={c.regno}>
-              {c.regno} - {c.model}
+            <option key={c.Regno} value={c.Regno}>
+              {c.Regno} - {c.model}
             </option>
           ))}
         </select>
@@ -111,8 +111,8 @@ function ParticipatedPage() {
       <ul>
         {participations.map((p, i) => (
           <li key={i}>
-            Driver: {p.driver_id} | Car: {p.regno} | Accident: {p.report_number} | Damage: ₹{p.damage_amount}
-            <button onClick={() => handleDelete(p.driver_id, p.regno, p.report_number)}>Delete</button>
+            Driver: {p.driver_id} | Car: {p.Regno} | Accident: {p.report_number} | Damage: ₹{p.damage_amount}
+            <button onClick={() => handleDelete(p.driver_id, p.Regno, p.report_number)}>Delete</button>
           </li>
         ))}
       </ul>

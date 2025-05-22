@@ -47,11 +47,13 @@ router.put('/:regno', async (req, res) => {
 // DELETE - Remove car
 router.delete('/:regno', async (req, res) => {
     try {
-        await db.query('DELETE FROM CAR WHERE Regno = ?', [req.params.regno]);
+        const [result] = await db.query('DELETE FROM CAR WHERE Regno = ?', [req.params.regno]);
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Car not found' });
+        }
         res.json({ message: 'Car deleted' });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
-
 module.exports = router;
