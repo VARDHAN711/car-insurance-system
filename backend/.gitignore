@@ -1,0 +1,19 @@
+# Node dependencies
+node_modules/
+
+# Environment files
+.env
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor/IDE settings
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# OS-specific
+.DS_Store
+Thumbs.db
